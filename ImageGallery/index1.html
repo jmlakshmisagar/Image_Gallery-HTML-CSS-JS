@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            width: 100%;
+            height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(#ffcab0, 50%, #e0ffcd) fixed;
+        }
+
+        .gallery {
+            display: flex;
+            width: 1000px;
+            overflow-x: scroll;
+        }
+
+        .gallery div {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-gap: 20px;
+            padding: 10px;
+            flex: none;
+        }
+
+        .gallery div img {
+            width: 480px;
+            filter: grayscale(65%);
+            cursor: pointer;
+        }
+
+        .gallery div img:hover {
+            scale: 1.1;
+            filter: grayscale(0);
+            transition: all ease-in 0.4s;
+        }
+
+        .gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        .forGallery {
+            display: flex;
+            width: 1300px;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .forGallery p {
+            font-size: 50px;
+            cursor: pointer;
+            width: 55px;
+            border-radius: 50%;
+            background-color: #00000012;
+            padding: 15px;
+        }
+
+        #fullscreen-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #fullscreen-image {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        #close-fullscreen {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            color: white;
+            cursor: pointer;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="forGallery">
+        <p id="backbtn"><i class="fa-solid fa-arrow-left"></i></p>
+        <div class="gallery">
+            <div>
+                <span><img src="IMG_4274.JPG" alt="Image 1" class="fullscreen-trigger"></span>
+                <span><img src="IMG_4272.JPG" alt="Image 2" class="fullscreen-trigger"></span>
+                <span><img src="IMG_4274.JPG" alt="Image 3" class="fullscreen-trigger"></span>
+            </div>
+            <div>
+                <span><img src="IMG_4274.JPG" alt="Image 4" class="fullscreen-trigger"></span>
+                <span><img src="IMG_4272.JPG" alt="Image 5" class="fullscreen-trigger"></span>
+                <span><img src="IMG_4274.JPG" alt="Image 6" class="fullscreen-trigger"></span>
+            </div>
+        </div>
+        <p id="nxtbtn"><i class="fa-solid fa-arrow-right"></i></p>
+    </div>
+    <div id="fullscreen-container">
+        <p id="close-fullscreen"><i class="fa-solid fa-times"></i></p>
+        <img id="fullscreen-image" src="" alt="Full-screen Image">
+    </div>
+
+    <script>
+        let scrollBar = document.querySelector(".gallery");
+        let backbtn = document.getElementById("backbtn");
+        let nxtbtn = document.getElementById("nxtbtn");
+        let fullscreenContainer = document.getElementById("fullscreen-container");
+        let fullscreenImage = document.getElementById("fullscreen-image");
+        let closeFullscreen = document.getElementById("close-fullscreen");
+
+        scrollBar.addEventListener("wheel", (event) => {
+            event.preventDefault();
+            scrollBar.scrollLeft += event.deltaY;
+            scrollBar.style.scrollBehavior = "smooth";
+        });
+
+        backbtn.addEventListener("click", () => {
+            scrollBar.scrollLeft -= 900;
+            scrollBar.style.scrollBehavior = "smooth";
+        });
+
+        nxtbtn.addEventListener("click", () => {
+            scrollBar.scrollLeft += 900;
+            scrollBar.style.scrollBehavior = "smooth";
+        });
+
+        let images = document.querySelectorAll(".fullscreen-trigger");
+
+        images.forEach((image) => {
+            image.addEventListener("click", () => {
+                fullscreenImage.src = image.src;
+                fullscreenContainer.style.display = "flex";
+                document.body.style.overflow = "hidden";
+            });
+        });
+
+        closeFullscreen.addEventListener("click", () => {
+            fullscreenContainer.style.display = "none";
+            document.body.style.overflow = "auto";
+        });
+
+    </script>
+</body>
+
+</html>

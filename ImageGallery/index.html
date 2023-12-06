@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="Gallery">
+        <div>
+            <span><img src="IMG_4274.JPG" id="image"></span>
+            <span><img src=" IMG_4272.JPG" id="image"></span>
+            <span><img src="IMG_4340.JPG" id="image"></span>
+        </div>
+        <div class="image">
+            <img src="IMG_4272.JPG" class="findimage">
+        </div>
+        <div>
+            <span><img src="IMG_4274.JPG" id="image"></span>
+            <span><img src=" IMG_4272.JPG" id="image"></span>
+            <span><img src="IMG_4340.JPG" id="image"></span>
+        </div>
+        <!-- <div class="image">
+            <img src="IMG_4274.JPG" id="findimage">
+        </div> -->
+    </div>
+    <script>
+
+        let images = document.getElementById("image");
+        let findimage = document.querySelector(".findimage");
+        images.onclick = function () {
+            findimage.classList.add("after");
+        }
+    </script>
+</body>
+
+</html>

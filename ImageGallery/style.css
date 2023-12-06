@@ -1,0 +1,41 @@
+body{
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+}
+.Gallery div{
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+}
+div img{
+    width: 480px;
+    flex: none;
+    margin: 10px;
+    filter: grayscale(100%);
+    cursor: pointer;
+    position: relative;
+}
+div img:hover{
+    scale: 1.1;
+    filter: grayscale(0);
+    transition: all 0.3s;
+}
+.findimage{
+    width: 60vw;
+    position: absolute;
+    z-index: 2;
+    scale: 0.1;
+    border-radius: 50%;
+    visibility: hidden;
+}
+.after{
+    scale: 1;
+    border-radius: 0px;
+    visibility: visible;
+    transition: all 0.5s;
+}
